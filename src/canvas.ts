@@ -13,19 +13,22 @@ export const canvas = () => {
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-  const mapImage = new Image();
-  mapImage.src = assets.map;
-  mapImage.onload = () => ctx.drawImage(mapImage, -770, -500);
-
   const playerImage = new Image();
   playerImage.src = assets.playerDown;
-  playerImage.onload = () =>
+
+  const mapImage = new Image();
+  mapImage.src = assets.map;
+  mapImage.onload = () => {
+    // Draw map
+    ctx.drawImage(mapImage, -770, -500);
+
+    // Draw player
     ctx.drawImage(
       playerImage,
       WIDTH / 2 - playerImage.width / 2,
       HEIGHT / 2 - playerImage.height / 2
     );
+  };
 
   document.querySelector("#app")?.appendChild(canvas);
 };
-
